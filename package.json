@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "node caps.js",
+    "test": "jest --verbose --coverage"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "faker": "^5.5.3",
+    "jest": "^27.0.6"
+  }
+}
