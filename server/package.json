@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest --verbose --coverage"
+  },
+  "dependencies": {
+    "socket.io": "^4.1.2"
+  }
+}

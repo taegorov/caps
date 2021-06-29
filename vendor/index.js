@@ -1,7 +1,11 @@
 'use strict';
 
 // === === // imports // === === //
-const faker = require('faker'); // faker library makes up phony information
+const io = require('socket.io-client');
+const url = 'http://localhost:3000/cap';
+const server = io.connect(url);
+const storeName = process.env.STORENAME;
+const faker = require('faker');
 
 
 // === === constructor === === //
@@ -22,11 +26,19 @@ class Vendor {
   }
 }
 
+const order = new Vendor();
 
-function thanks(payload) {
+
+server.on('delivered', (payload) => {
   console.log(`👨‍💻 VENDOR: thank you for delivering ${payload.payload.orderId}`);
-  console.log(`⌚TIME: ${new Date().toISOString()}`);
-  console.log(payload);
-}
+});
 
-module.exports = { Vendor, thanks };
+
+// === === // pickup, wait 5 seconds // === === //
+setInterval(() => {
+  server.emit('pick-up', { payload: order.create() });
+}, 5000);
+
+
+// === === // export // === === //
+// module.exports = Vendor;

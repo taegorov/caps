@@ -4,9 +4,11 @@
 
 (source - Code Fellows Lab 11)
 
-![caps](caps-UML.jpg)
 
 ---
+### Phase 1
+
+![caps](caps-UML.jpg)
 
 The following user/developer stories detail the major functionality for this phase of the project.
 
@@ -21,6 +23,21 @@ The following user/developer stories detail the major functionality for this pha
     ✔ As a developer, I want to use industry standards for managing the state of each package
     ✔ As a developer, I want to create an event driven system so that I can write code that happens in response to events, in real time
 
+### Phase 2
+
+![socket-uml](socket-UML.jpg)
+
+> In Phase 2, we’ll be changing the underlying networking implementation of our CAPS system from using node events to using a library called socket.io so that we can do networked events. Socket.io manages the connection pool for us, makes broadcasting much easier to operate, and works well both on the terminal (between servers) and with web clients.
+
+    By default, all vendors and drivers hear all of the messages…
+        Ensure that each vendor only processes pickup and delivered events for it’s own packages!
+            Options
+                As a vendor, send your vendor id with every pickup, and then when the broadcasted messages come back, ignore those that are not yours
+                Setup a separate namespace for each vendor
+                Each store will have it’s own “room” within the ‘caps’ namespace
+
+> The expected output of the 3 running applications is the same as it was in Phase 1.
+
 --- 
 
 ## URLs
@@ -31,4 +48,4 @@ The following user/developer stories detail the major functionality for this pha
 
 ## Thanks
 
-Thanks to Jacob Knaack, Code Fellows instructor, for walking us through how to write this code. I used his demo code from lecture as a blueprint for writing my code, along with my tests. 
+Thanks to Jacob Knaack, Code Fellows instructor, for walking us through how to write this code. I used his demo code from lecture as a blueprint for writing my code, along with my tests. Some of his comments and code fragments remain, and I have done my best to attribute them where they appear.
