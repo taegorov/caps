@@ -38,6 +38,25 @@ The following user/developer stories detail the major functionality for this pha
 
 > The expected output of the 3 running applications is the same as it was in Phase 1.
 
+### Phase 3
+
+![caps-queue-UML](caps-queue-UML.jpg)
+
+> In this phase, we’ll be adding a layer of complexity to our application. Rather than just “fire” events and hope that our vendors and drivers respond to them, we’re going to implement a “queue” system so that nothing gets lost. Every event sent will be logged and held onto by the server until the intended recipient acknowledges that they received the message. At any time, a subscriber can get all of the messages they might have missed.
+
+
+    ✔ As a vendor, I want to “subscribe” to “delivered” notifications so that I know when my packages are delivered
+    
+    ✔ As a vendor, I want to “catch up” on any “delivered” notifications that I might have missed so that I can see a complete log
+    
+    ✔ As a driver, I want to “subscribe” to “pickup” notifications so that I know what packages to deliver
+    
+    ✔ As a driver, I want to “catch up” on any “pickup” notifications I may have missed so that I can deliver everything
+    
+    ✔ As a driver, I want a way to “scan” a delivery so that the vendors know when a package has been delivered
+
+
+
 --- 
 
 ## URLs
