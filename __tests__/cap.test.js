@@ -1,7 +1,7 @@
 'use strict';
 
-const vendor = require('../vendor/vendor.js');
-const driver = require('../driver/driver.js');
+const vendor = require('../vendor/index.js');
+const driver = require('../driver/index.js');
 const events = require('../events.js');
 const faker = require('faker');
 
