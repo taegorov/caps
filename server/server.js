@@ -5,8 +5,8 @@ const io = socket(3000);
 const cap = io.of('/cap');
 
 
-// === === defining Queue === === //
-const itemQueue = {
+// === === defining Queue server hub === === //
+const messageQueue = {
   pickup: {},
   transit: {},
   delivered: {},
@@ -20,8 +20,9 @@ cap.on('connection', (socket) => {
   // === === // pick up // === === //
   socket.on('pick-up', (payload) => {
 
-    itemQueue.pickup[payload.payload.orderId] = payload;
-    console.log('picked up', `time: ${new Date().toISOString()}`, payload);
+    messageQueue.pickup[payload.payload.orderId] = payload;
+    // console.log('picked up', `time: ${new Date().toISOString()}`, payload);
+    console.log('🔥EVENT: ', payload);
     socket.broadcast.emit('pick-up', payload);
 
   });
@@ -30,20 +31,22 @@ cap.on('connection', (socket) => {
   // === === // in-transit // === === //
   socket.on('in-transit', (payload) => {
 
-    itemQueue.transit[payload.payload.orderId] = payload;
-    delete itemQueue.pickup[payload.payload.orderId];
-    console.log('in-transit', `time: ${new Date().toISOString()}`, payload);
+    messageQueue.transit[payload.payload.orderId] = payload;
+    delete messageQueue.pickup[payload.payload.orderId];
+    // console.log('in-transit', `time: ${new Date().toISOString()}`, payload);
+    console.log('🌌EVENT: ', payload);
 
   });
 
 
   // === === // delivered // === === //
-  socket.on('getAll', () => {
+  socket.on('delivered', (payload) => {
+    console.log('✅EVENT: delivered', payload);
 
-    for (let temp in itemQueue.pickup) {
+    for (let temp in messageQueue.pickup) {
       // console.log('in-transit', `time: ${new Date().toISOString()}`, payload);
       // socket.broadcast.emit('delivered', payload);
-      socket.emit('pick-up', itemQueue.pickup[temp]);
+      socket.emit('pick-up', messageQueue.pickup[temp]);
     }
   });
 
